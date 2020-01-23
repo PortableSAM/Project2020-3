@@ -1,0 +1,14 @@
+.table td,
+.table th {
+  vertical-align: middle;
+  text-align: center;
+}
+.table-btn {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+.tablebtn {
+  width: 80px;
+  letter-spacing: 4px;
+}
