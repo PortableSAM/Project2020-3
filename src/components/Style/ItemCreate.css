@@ -1,80 +1,55 @@
-/* 요소 | http://localhost:3000/input */
-#root > div:nth-child(1) > form:nth-child(1) {
-  margin-top: 30px;
+.input-title {
+  text-align: center;
+  letter-spacing: 5px;
+}
+.input-container {
+  margin-top: 70px;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-
-/* 요소 | http://localhost:3000/input */
-
-.item-container {
-  width: 50%;
-  padding: 20px;
-  letter-spacing: 5px;
-}
-
-.input-title {
-  margin-left: 20px;
-}
-
-/* 요소 | http://localhost:3000/input */
-
-.item-name {
-  flex-direction: row;
-  display: flex;
-}
-
-/* 요소 | http://localhost:3000/input */
-
-.item-Quantity {
-  display: flex;
-}
-
-/* 요소 | http://localhost:3000/input */
-
-.item-Etc > textarea:nth-child(1) {
-  margin-top: 30px;
+.input-container > form {
   width: 600px;
-  height: 140px;
-  margin-left: 20px;
+  padding: 15px;
+  background-color: rgba(255, 182, 193, 0.459);
+  border-radius: 5px;
 }
-.item-name,
 .item-registrante,
+.item-name,
 .item-LotNumber,
 .item-Quantity,
 .item-PurchasePrice,
 .item-DateOfPurchase {
-  margin: 5px;
+  letter-spacing: 3px;
 }
 
-.item-name label,
-.item-registrante label,
-.item-LotNumber label,
-.item-Quantity label,
-.item-PurchasePrice label,
-.item-DateOfPurchase label {
-  margin: 0;
-  vertical-align: middle;
-}
-.item-name input,
 .item-registrante input,
+.item-name input,
 .item-LotNumber input,
 .item-Quantity input,
 .item-PurchasePrice input,
 .item-DateOfPurchase input {
   border: none;
-  border-bottom: 1px solid lightpink;
+  border-bottom: 1px dotted lightgrey;
+  background-color: rgba(211, 211, 211, 0.425);
+  text-align: center;
 }
-.item-name label,
-.item-Quantity label {
-  align-self: center;
+.item-name,
+.item-Quantity {
+  display: flex;
+  flex-direction: column;
 }
-.inputbtn {
-  margin-top: 10px;
-  margin-right: 25%;
-  width: 95px;
-  align-self: flex-end;
-  letter-spacing: 5px;
+.item-Etc > textarea:nth-child(1) {
+  width: 540px;
+  margin-left: 10px;
+}
+.input-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.btn > a:nth-child(1) {
+  letter-spacing: 3px;
+  color: #343a40;
+  text-decoration: none;
 }

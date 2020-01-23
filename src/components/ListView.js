@@ -13,7 +13,7 @@ function ListView() {
   //Collection Item문서 수신
   useEffect(() => {
     const fetchData = () => {
-      dbRef.onSnapshot(snapshot => {
+      dbRef.orderBy("createAt", "desc").onSnapshot(snapshot => {
         const info = snapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()

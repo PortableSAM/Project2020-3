@@ -8,15 +8,15 @@ const db = firebase.firestore();
 const dbRef = db.collection("Item").doc();
 
 export const ItemInput = () => {
-  const [type, setType] = useState(null);
-  const [date, setDate] = useState(null);
-  const [itemNm, setItemNm] = useState(null);
-  const [lot, setLot] = useState(null);
-  const [quantity, setQuantity] = useState(null);
-  const [unit, setUnit] = useState(null);
-  const [price, setPrice] = useState(null);
-  const [registor, setregistor] = useState(null);
-  const [etc, setEtc] = useState(null);
+  const [type, setType] = useState();
+  const [date, setDate] = useState();
+  const [itemNm, setItemNm] = useState();
+  const [lot, setLot] = useState();
+  const [quantity, setQuantity] = useState();
+  const [unit, setUnit] = useState();
+  const [price, setPrice] = useState();
+  const [registor, setregistor] = useState();
+  const [etc, setEtc] = useState();
 
   const newItem = {
     type: type,
@@ -30,125 +30,144 @@ export const ItemInput = () => {
     registor: registor,
     etc: etc
   };
-  console.log(newItem);
+  console.log();
   const handleInput = e => {
     e.preventDefault();
-    if (!newItem === null) {
-      alert("자료입력 요망");
-    } else {
+    try {
       dbRef.set(newItem);
       alert("등 록 완 료");
+    } catch (error) {
+      console.error("Submit Failed", error);
+      alert("Submit Failed");
     }
   };
 
   return (
-    <form name="item-info">
-      <div className="item-container">
-        <div className="input-title">
-          <h3>품목등록</h3>
+    <div className="input-container">
+      <form name="item-info">
+        <div className="item-container">
+          <div className="input-title">
+            <h3>품목등록</h3>
+          </div>
+          <div className="item-sepc-container">
+            <div className="item-registrante">
+              <label>
+                등 록 자 :
+                <input
+                  type="text"
+                  placeholder="등 록 자"
+                  defaultValue={setregistor}
+                  onChange={e => setregistor(e.target.value)}
+                />{" "}
+              </label>
+            </div>
+            <div className="item-name">
+              <label>
+                제품분류
+                <Col lg={"auto"}>
+                  <Input
+                    type="select"
+                    name="type"
+                    defaultValue={setType}
+                    onChange={e => setType(e.target.value)}
+                  >
+                    <option>Mask</option>
+                    <option>Tool</option>
+                    <option>Office</option>
+                    <option>장갑</option>
+                  </Input>
+                </Col>
+              </label>
+              <label>
+                제품이름 :
+                <input
+                  type="text"
+                  placeholder="제품이름"
+                  defaultValue={setItemNm}
+                  onChange={e => setItemNm(e.target.value)}
+                />
+              </label>
+            </div>
+            <div className="item-LotNumber">
+              <label>
+                로트넘버 :
+                <input
+                  type="text/number"
+                  placeholder="Lot Number"
+                  defaultValue={setLot}
+                  onChange={e => setLot(e.target.value)}
+                />
+              </label>
+            </div>
+            <div className="item-Quantity">
+              <label>
+                구매수량 :
+                <input
+                  type="number"
+                  name="quantity"
+                  min="0"
+                  placeholder="0"
+                  defaultValue={setQuantity}
+                  onChange={e => setQuantity(e.target.value)}
+                />
+              </label>
+              <label>
+                수량단위
+                <Col lg={"auto"}>
+                  <Input
+                    type="select"
+                    name="unti"
+                    placeholder="수량 단위"
+                    defaultValue={setUnit}
+                    onChange={e => setUnit(e.target.value)}
+                  >
+                    <option>set</option>
+                    <option>EA</option>
+                    <option>PK</option>
+                  </Input>
+                </Col>
+              </label>
+            </div>
+            <div className="item-PurchasePrice">
+              <label>
+                구매단가 :
+                <input
+                  type="text"
+                  name="price"
+                  placeholder="구매단가"
+                  defaultValue={setPrice}
+                  onChange={e => setPrice(e.target.value)}
+                />
+              </label>
+            </div>
+            <div className="item-DateOfPurchase">
+              <label>
+                구매일자 :
+                <input
+                  type="date"
+                  name="date"
+                  defaultValue={setDate}
+                  onChange={e => setDate(e.target.value)}
+                />{" "}
+              </label>
+            </div>
+          </div>
+          <div className="item-Etc">
+            <textarea
+              type="input"
+              name="item-etc"
+              placeholder="품목의 기타 상세정보 기입"
+              defaultValue={setEtc}
+              onChange={e => setEtc(e.target.value)}
+            />
+          </div>
         </div>
-        <div className="item-sepc-container">
-          <div className="item-registrante">
-            <label name="ItemRegistrant">등록자 : </label>
-            <input
-              type="text"
-              placeholder="등록자"
-              defaultValue={setregistor}
-              onChange={e => setregistor(e.target.value)}
-            />
-          </div>
-          <div className="item-name">
-            <label name="ItemName">제품이름 : </label>
-            <input
-              type="text"
-              placeholder="제품이름"
-              defaultValue={setItemNm}
-              onChange={e => setItemNm(e.target.value)}
-            />
-            <label name="item-type">제품분류 :</label>
-            <Col lg={4}>
-              <Input
-                type="select"
-                name="type"
-                defaultValue={setType}
-                onChange={e => setType(e.target.value)}
-              >
-                <option>Mask</option>
-                <option>Tool</option>
-                <option>Office</option>
-                <option>장갑</option>
-              </Input>
-            </Col>
-          </div>
-          <div className="item-LotNumber">
-            <label name="ItemLotNumber">로트넘버 : </label>
-            <input
-              type="text/number"
-              placeholder="Lot Number"
-              defaultValue={setLot}
-              onChange={e => setLot(e.target.value)}
-            />
-          </div>
-          <div className="item-Quantity">
-            <label name="ItemQuantity">구매수량 : </label>
-            <input
-              type="number"
-              name="quantity"
-              min="0"
-              placeholder="0"
-              defaultValue={setQuantity}
-              onChange={e => setQuantity(e.target.value)}
-            />
-            <Col lg={4}>
-              <Input
-                type="select"
-                name="unti"
-                placeholder="수량 단위"
-                defaultValue={setUnit}
-                onChange={e => setUnit(e.target.value)}
-              >
-                <option>set</option>
-                <option>EA</option>
-                <option>PK</option>
-              </Input>
-            </Col>
-          </div>
-          <div className="item-PurchasePrice">
-            <label name="ItemPurchasePrice">구매단가 : </label>
-            <input
-              type="text"
-              name="price"
-              placeholder="구매단가"
-              defaultValue={setPrice}
-              onChange={e => setPrice(e.target.value)}
-            />
-          </div>
-          <div className="item-DateOfPurchase">
-            <label name="ItemDateOfPurchase">구매일자 : </label>
-            <input
-              type="date"
-              name="date"
-              defaultValue={setDate}
-              onChange={e => setDate(e.target.value)}
-            />
-          </div>
+        <div className="input-btn">
+          <button className="btn btn-warning" onClick={handleInput}>
+            <Link to="/">Submit</Link>
+          </button>
         </div>
-        <div className="item-Etc">
-          <textarea
-            type="input"
-            name="item-etc"
-            placeholder="품목의 기타 상세정보 기입"
-            defaultValue={setEtc}
-            onChange={e => setEtc(e.target.value)}
-          />
-        </div>
-      </div>
-      <button
-        className="inputbtn btn btn-outline-secondary"
-        onClick={handleInput}
-      >
-        <Link to="/">등 록</Link>
-      </button>
-    </form>
+      </form>
+    </div>
   );
 };
