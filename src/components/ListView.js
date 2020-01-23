@@ -26,9 +26,7 @@ function ListView() {
       {itemInfo.map((item, index) => (
         <tr key={index}>
           <th scope="row">{item.type}</th>
-          <td>
-            {new Date(item.createAt.seconds * 1000).toLocaleDateString("ko")}
-          </td>
+          <td>{new Date(item.createAt.seconds * 1000).toLocaleString("ko")}</td>
           <td>{item.date}</td>
           <td>{item.itemNm}</td>
           <td>{item.lot}</td>
