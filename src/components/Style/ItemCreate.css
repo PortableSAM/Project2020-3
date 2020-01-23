@@ -1,0 +1,80 @@
+/* 요소 | http://localhost:3000/input */
+#root > div:nth-child(1) > form:nth-child(1) {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* 요소 | http://localhost:3000/input */
+
+.item-container {
+  width: 50%;
+  padding: 20px;
+  letter-spacing: 5px;
+}
+
+.input-title {
+  margin-left: 20px;
+}
+
+/* 요소 | http://localhost:3000/input */
+
+.item-name {
+  flex-direction: row;
+  display: flex;
+}
+
+/* 요소 | http://localhost:3000/input */
+
+.item-Quantity {
+  display: flex;
+}
+
+/* 요소 | http://localhost:3000/input */
+
+.item-Etc > textarea:nth-child(1) {
+  margin-top: 30px;
+  width: 600px;
+  height: 140px;
+  margin-left: 20px;
+}
+.item-name,
+.item-registrante,
+.item-LotNumber,
+.item-Quantity,
+.item-PurchasePrice,
+.item-DateOfPurchase {
+  margin: 5px;
+}
+
+.item-name label,
+.item-registrante label,
+.item-LotNumber label,
+.item-Quantity label,
+.item-PurchasePrice label,
+.item-DateOfPurchase label {
+  margin: 0;
+  vertical-align: middle;
+}
+.item-name input,
+.item-registrante input,
+.item-LotNumber input,
+.item-Quantity input,
+.item-PurchasePrice input,
+.item-DateOfPurchase input {
+  border: none;
+  border-bottom: 1px solid lightpink;
+}
+.item-name label,
+.item-Quantity label {
+  align-self: center;
+}
+.inputbtn {
+  margin-top: 10px;
+  margin-right: 25%;
+  width: 95px;
+  align-self: flex-end;
+  letter-spacing: 5px;
+}

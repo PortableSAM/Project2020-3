@@ -1,6 +1,7 @@
 import React from "react";
 import ListView from "./ListView";
 import "./Style/ListApp.css";
+import { Link } from "react-router-dom";
 
 function ListApp() {
   return (
@@ -29,7 +30,9 @@ function ListApp() {
         </table>
       </div>
       <div className="table-btn">
-        <button className="tablebtn btn btn-secondary">추 가</button>
+        <Link to="/input">
+          <button className="tablebtn btn btn-secondary">추 가</button>
+        </Link>
       </div>
     </div>
   );
