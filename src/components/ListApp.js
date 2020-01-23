@@ -21,6 +21,7 @@ function ListApp() {
               <th>가격</th>
               <th>등록자</th>
               <th>비고</th>
+              <th>수정</th>
               <th>삭제</th>
             </tr>
           </thead>
