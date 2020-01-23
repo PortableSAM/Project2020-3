@@ -9,7 +9,7 @@ function ListApp() {
         <h2>List Title</h2>
       </div>
       <div className="list-table">
-        <table className="table table-striped">
+        <table className="table table">
           <thead>
             <tr>
               <th>분류</th>

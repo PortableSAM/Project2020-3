@@ -17,7 +17,21 @@
   border-radius: 5px;
   overflow-y: scroll;
 }
-
+.item-unit {
+  width: 30px;
+  text-align: center;
+}
+.item-date {
+  width: 150px;
+  text-align: center;
+}
+.item-unit,
+.item-date,
+.item-etc {
+  border: none;
+  border-bottom: 1px solid lightpink;
+  outline-style: none;
+}
 .table td,
 .table th {
   vertical-align: middle;

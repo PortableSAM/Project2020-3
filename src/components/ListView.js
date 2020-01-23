@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebase from "./Config/Config";
-import { LVRemove } from "./ListViewRemove";
+import { InfoUpdate } from "./InfoUpdate";
 
 //수신 Collection 지정
 const db = firebase.firestore();
@@ -26,29 +26,11 @@ function ListView() {
   }, []);
 
   return (
-    <tbody>
+    <>
       {itemInfo.map(item => (
-        <tr key={item.id}>
-          <th scope="row">{item.type}</th>
-          <td>{new Date(item.createAt.seconds * 1000).toLocaleString("ko")}</td>
-          <td>{item.date}</td>
-          <td>{item.itemNm}</td>
-          <td>{item.lot}</td>
-          <td>
-            {item.quantity} {item.unit}
-          </td>
-          <td>{item.price}</td>
-          <td>{item.registor}</td>
-          <td>{item.etc}</td>
-          <td>
-            <button className="btn btn-outline-warning">수 정</button>
-          </td>
-          <td>
-            <LVRemove item={item} />
-          </td>
-        </tr>
+        <InfoUpdate key={item.id} item={item} />
       ))}
-    </tbody>
+    </>
   );
 }
 
