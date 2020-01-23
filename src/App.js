@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import ListApp from "./components/ListApp";
+import ListApp from "./components/List/ListApp";
 import { ItemInput } from "./components/ItemCreate";
 
 function App() {

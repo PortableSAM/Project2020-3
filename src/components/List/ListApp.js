@@ -1,6 +1,6 @@
 import React from "react";
 import ListView from "./ListView";
-import "./Style/ListApp.css";
+import "../Style/ListApp.css";
 import { Link } from "react-router-dom";
 
 function ListApp() {

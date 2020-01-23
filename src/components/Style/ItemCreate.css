@@ -53,3 +53,7 @@
   color: #343a40;
   text-decoration: none;
 }
+.cancelbtn {
+  margin-left: 20px;
+  letter-spacing: 4px;
+}

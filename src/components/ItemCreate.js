@@ -166,6 +166,9 @@ export const ItemInput = () => {
           <button className="btn btn-warning" onClick={handleInput}>
             <Link to="/">Submit</Link>
           </button>
+          <Link to="/">
+            <button className="cancelbtn btn btn-secondary">Cancel</button>
+          </Link>
         </div>
       </form>
     </div>

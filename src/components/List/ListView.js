@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import firebase from "./Config/Config";
+import firebase from "../Config/Config";
 import { InfoUpdate } from "./InfoUpdate";
 
 //수신 Collection 지정

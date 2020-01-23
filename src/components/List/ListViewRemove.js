@@ -1,5 +1,5 @@
 import React from "react";
-import firebase from "./Config/Config";
+import firebase from "../Config/Config";
 
 const db = firebase.firestore();
 const dbRef = db.collection("Item");
