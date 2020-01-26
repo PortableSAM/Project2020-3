@@ -4,6 +4,7 @@ import { Col, Input } from "reactstrap";
 import firebase from "./Config/Config";
 import "./Style/ItemCreate.css";
 
+//fireStore collection 지정(doc.id는 자동생성).
 const db = firebase.firestore();
 const dbRef = db.collection("Item").doc();
 
@@ -34,6 +35,7 @@ export const ItemInput = () => {
   const handleInput = e => {
     e.preventDefault();
     try {
+      //method set과 add 거의 같다고 보면됨. add 사용 시 .collection()다음에 .doc()은 빼야함.
       dbRef.set(newItem);
       alert("등 록 완 료");
     } catch (error) {

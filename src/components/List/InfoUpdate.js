@@ -12,6 +12,7 @@ export const InfoUpdate = ({ item }) => {
 
   const handleUpdat = () => {
     try {
+      //해당 doc.id 필드값 업데이트, 업데이트 시간 기록(서버수신 시간 기준).
       dbRef.doc(item.id).update({
         date: date,
         etc: etc,

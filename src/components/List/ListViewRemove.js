@@ -6,6 +6,7 @@ const dbRef = db.collection("Item");
 export const LVRemove = ({ item }) => {
   const handleRemove = () => {
     try {
+      //doc.id를 props로 받아서 document 삭제.
       alert("Data Remove?");
       dbRef.doc(item.id).delete();
       console.log("Data Remove");
