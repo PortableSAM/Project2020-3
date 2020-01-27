@@ -3,7 +3,7 @@ import ListView from "./ListView";
 import { Modal } from "reactstrap";
 import { ItemInput } from "../ItemCreate";
 import styled from "styled-components";
-import "../Style/ListApp.css";
+
 function ListApp() {
   const [modal, setModal] = React.useState(false);
   const onToggle = () => setModal(!modal === true);
