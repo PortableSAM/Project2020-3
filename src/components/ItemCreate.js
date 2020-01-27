@@ -1,177 +1,101 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Col, Input } from "reactstrap";
+import React from "react";
+import { useForm } from "react-hook-form";
 import firebase from "./Config/Config";
 import "./Style/ItemCreate.css";
 
 //fireStore collection 지정(doc.id는 자동생성).
 const db = firebase.firestore();
 const dbRef = db.collection("Item").doc();
+const createAt = firebase.firestore.Timestamp.fromDate(new Date());
 
 export const ItemInput = () => {
-  const [type, setType] = useState();
-  const [date, setDate] = useState();
-  const [itemNm, setItemNm] = useState();
-  const [lot, setLot] = useState();
-  const [quantity, setQuantity] = useState();
-  const [unit, setUnit] = useState();
-  const [price, setPrice] = useState();
-  const [registor, setregistor] = useState();
-  const [etc, setEtc] = useState();
+  const { register, handleSubmit, errors } = useForm();
 
-  const newItem = {
-    type: type,
-    createAt: firebase.firestore.Timestamp.fromDate(new Date()),
-    date: date,
-    itemNm: itemNm,
-    lot: lot,
-    quantity: quantity,
-    unit: unit,
-    price: price,
-    registor: registor,
-    etc: etc
-  };
-  console.log();
-  const handleInput = e => {
-    e.preventDefault();
+  const onSubmit = data => {
+    const newItem = { data, createAt: createAt };
     try {
-      //method set과 add 거의 같다고 보면됨. add 사용 시 .collection()다음에 .doc()은 빼야함.
       dbRef.set(newItem);
-      alert("등 록 완 료");
     } catch (error) {
-      console.error("Submit Failed", error);
-      alert("Submit Failed");
+      console.error("Failed", error);
     }
   };
 
   return (
-    <div className="input-container">
-      <form name="item-info">
-        <div className="item-container">
-          <div className="input-title">
-            <h3>품목등록</h3>
-          </div>
-          <div className="item-sepc-container">
-            <div className="item-registrante">
-              <label>
-                등 록 자 :
-                <input
-                  type="text"
-                  placeholder="등 록 자"
-                  defaultValue={setregistor}
-                  onChange={e => setregistor(e.target.value)}
-                />{" "}
-              </label>
-            </div>
-            <div className="item-name">
-              <label>
-                제품분류
-                <Col lg={"auto"}>
-                  <Input
-                    type="select"
-                    name="type"
-                    defaultValue={setType}
-                    onChange={e => setType(e.target.value)}
-                  >
-                    <option>Mask</option>
-                    <option>Tool</option>
-                    <option>Office</option>
-                    <option>장갑</option>
-                  </Input>
-                </Col>
-              </label>
-              <label>
-                제품이름 :
-                <input
-                  type="text"
-                  placeholder="제품이름"
-                  defaultValue={setItemNm}
-                  onChange={e => setItemNm(e.target.value)}
-                />
-              </label>
-            </div>
-            <div className="item-LotNumber">
-              <label>
-                로트넘버 :
-                <input
-                  type="text/number"
-                  placeholder="Lot Number"
-                  defaultValue={setLot}
-                  onChange={e => setLot(e.target.value)}
-                />
-              </label>
-            </div>
-            <div className="item-Quantity">
-              <label>
-                구매수량 :
-                <input
-                  type="number"
-                  name="quantity"
-                  min="0"
-                  placeholder="0"
-                  defaultValue={setQuantity}
-                  onChange={e => setQuantity(e.target.value)}
-                />
-              </label>
-              <label>
-                수량단위
-                <Col lg={"auto"}>
-                  <Input
-                    type="select"
-                    name="unti"
-                    placeholder="수량 단위"
-                    defaultValue={setUnit}
-                    onChange={e => setUnit(e.target.value)}
-                  >
-                    <option>set</option>
-                    <option>EA</option>
-                    <option>PK</option>
-                  </Input>
-                </Col>
-              </label>
-            </div>
-            <div className="item-PurchasePrice">
-              <label>
-                구매단가 :
-                <input
-                  type="text"
-                  name="price"
-                  placeholder="구매단가"
-                  defaultValue={setPrice}
-                  onChange={e => setPrice(e.target.value)}
-                />
-              </label>
-            </div>
-            <div className="item-DateOfPurchase">
-              <label>
-                구매일자 :
-                <input
-                  type="date"
-                  name="date"
-                  defaultValue={setDate}
-                  onChange={e => setDate(e.target.value)}
-                />{" "}
-              </label>
-            </div>
-          </div>
-          <div className="item-Etc">
-            <textarea
-              type="input"
-              name="item-etc"
-              placeholder="품목의 기타 상세정보 기입"
-              defaultValue={setEtc}
-              onChange={e => setEtc(e.target.value)}
+    <div className="input_container">
+      <div className="input_title">
+        <h4>물품등록</h4>
+      </div>
+      <form className="input_form" onSubmit={handleSubmit(onSubmit)}>
+        <label>
+          작성자
+          <input
+            type="text"
+            name="registor"
+            ref={register({ required: true })}
+          />
+          {errors.registor && `작성자 입력요망`}
+        </label>
+        <div className="item_name">
+          <label>
+            제품이름
+            <input
+              type="text"
+              name="itemNm"
+              ref={register({ required: true })}
             />
-          </div>
+            {errors.itemNm && `제품이름 입력요망`}
+          </label>
+          <label>
+            분류
+            <select type="text" name="type" ref={register}>
+              <option value="Mask">Mask</option>
+              <option value="Tool">Tool</option>
+              <option value="Gloves">Gloves</option>
+              <option value="Office">Office</option>
+              <option value="Computer goods">Computer goods</option>
+              <option value="etc">etc.</option>
+            </select>
+          </label>
         </div>
-        <div className="input-btn">
-          <button className="btn btn-warning" onClick={handleInput}>
-            <Link to="/">Submit</Link>
-          </button>
-          <Link to="/">
-            <button className="cancelbtn btn btn-secondary">Cancel</button>
-          </Link>
+        <label>
+          로트번호
+          <input type="text" name="lot" ref={register} />
+        </label>
+        <div className="item_quanti">
+          <label>
+            수량
+            <input
+              type="number"
+              name="quantity"
+              min="0"
+              ref={register({ required: true })}
+            />
+            {errors.quantity && `수량 입력요망`}
+          </label>
+          <label>
+            단위
+            <select type="text" name="unit" ref={register}>
+              <option value="EA">EA</option>
+              <option value="SET">SET</option>
+              <option value="PK">PK</option>
+            </select>
+          </label>
         </div>
+        <label>
+          구매가격
+          <input type="text" name="price" ref={register} />
+        </label>
+        <label>
+          구입일자
+          <input type="date" name="date" ref={register({ required: true })} />
+          {errors.date && `구입일자 입력요망`}
+        </label>
+        <textarea
+          name="etc"
+          placeholder="기타 특이사항 및 상세사항 기입."
+          ref={register}
+        />
+        <button type="submit">등록하기</button>
       </form>
     </div>
   );

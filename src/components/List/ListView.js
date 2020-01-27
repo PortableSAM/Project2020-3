@@ -17,10 +17,12 @@ function ListView() {
       dbRef.orderBy("createAt", "desc").onSnapshot(snapshot => {
         const info = snapshot.docs.map(doc => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
+          ...doc.data().data
         }));
         // Collection Item doc Data를 itemInfo에 반영
         setItemInfo(info);
+        console.log(info);
       });
     };
     return fetchData();

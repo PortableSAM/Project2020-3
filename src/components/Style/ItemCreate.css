@@ -1,59 +1,34 @@
-.input-title {
-  text-align: center;
+.input_container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.input_form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.input_form label {
   letter-spacing: 5px;
 }
-.input-container {
-  margin-top: 70px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.input_form label,
+.input_form input,
+.input_form textarea {
+  margin: 5px;
 }
-.input-container > form {
-  width: 600px;
-  padding: 15px;
-  background-color: rgba(255, 182, 193, 0.459);
-  border-radius: 5px;
-}
-.item-registrante,
-.item-name,
-.item-LotNumber,
-.item-Quantity,
-.item-PurchasePrice,
-.item-DateOfPurchase {
-  letter-spacing: 3px;
-}
-
-.item-registrante input,
-.item-name input,
-.item-LotNumber input,
-.item-Quantity input,
-.item-PurchasePrice input,
-.item-DateOfPurchase input {
-  border: none;
-  border-bottom: 1px dotted lightgrey;
-  background-color: rgba(211, 211, 211, 0.425);
+.input_form input {
+  width: 150px;
   text-align: center;
+  letter-spacing: 2px;
+  border: none;
+  border-bottom: 1px solid gray;
+  background: none;
 }
-.item-name,
-.item-Quantity {
-  display: flex;
-  flex-direction: column;
-}
-.item-Etc > textarea:nth-child(1) {
-  width: 540px;
-  margin-left: 10px;
-}
-.input-btn {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-}
-.btn > a:nth-child(1) {
+.input_title {
+  padding: 5px;
   letter-spacing: 3px;
-  color: #343a40;
-  text-decoration: none;
 }
-.cancelbtn {
-  margin-left: 20px;
-  letter-spacing: 4px;
+.input_title h4 {
+  margin: 0;
 }
