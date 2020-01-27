@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LVRemove } from "./ListViewRemove";
 import firebase from "../Config/Config";
+import styled from "styled-components";
 
 const db = firebase.firestore();
 const dbRef = db.collection("Item");
@@ -26,12 +27,12 @@ export const InfoUpdate = ({ item }) => {
   };
 
   return (
-    <tbody>
+    <ListTablebody>
       <tr key={item.id}>
         <th scope="row">{item.type}</th>
         <td>{new Date(item.createAt.seconds * 1000).toLocaleString("ko")}</td>
         <td>
-          <input
+          <InputDate
             className="item-date"
             type="date"
             value={date}
@@ -42,7 +43,7 @@ export const InfoUpdate = ({ item }) => {
         <td>{item.lot}</td>
         <td>
           {item.quantity}{" "}
-          <input
+          <InputUnit
             className="item-unit"
             type="text"
             value={unit}
@@ -68,6 +69,23 @@ export const InfoUpdate = ({ item }) => {
           <LVRemove item={item} />
         </td>
       </tr>
-    </tbody>
+    </ListTablebody>
   );
 };
+
+const InputDate = styled.input`
+  width: 150px;
+  text-align: center;
+`;
+
+const InputUnit = styled.input`
+  width: 30px;
+  text-align: center;
+`;
+const ListTablebody = styled.tbody`
+  & input {
+    border: none;
+    border-bottom: 1px solid lightpink;
+    outline-style: none;
+  }
+`;

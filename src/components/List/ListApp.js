@@ -1,19 +1,19 @@
 import React from "react";
 import ListView from "./ListView";
-import "../Style/ListApp.css";
-//import { Link } from "react-router-dom";
 import { Modal } from "reactstrap";
 import { ItemInput } from "../ItemCreate";
+import styled from "styled-components";
+import "../Style/ListApp.css";
 function ListApp() {
   const [modal, setModal] = React.useState(false);
   const onToggle = () => setModal(!modal === true);
 
   return (
-    <div className="list-container">
-      <div className="list-title">
-        <h2>List Title</h2>
-      </div>
-      <div className="list-table">
+    <ListContainer>
+      <ListTitle>
+        <h2>Project 2020-3</h2>
+      </ListTitle>
+      <ListTable>
         <table className="table table">
           <thead>
             <tr>
@@ -32,17 +32,49 @@ function ListApp() {
           </thead>
           <ListView />
         </table>
-      </div>
-      <div className="table-btn">
+      </ListTable>
+      <TableBtn>
         <button className="btn btn-outline-secondary" onClick={onToggle}>
           항목추가
         </button>
         <Modal name="modal" isOpen={modal} toggle={onToggle}>
           <ItemInput />
         </Modal>
-      </div>
-    </div>
+      </TableBtn>
+    </ListContainer>
   );
 }
 
 export default ListApp;
+
+const ListContainer = styled.div`
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const ListTitle = styled.div`
+  padding-left: 85px;
+  align-self: flex-start;
+`;
+const ListTable = styled.div`
+  padding: 10px;
+  width: 90%;
+  height: 700px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-radius: 5px;
+  overflow-y: scroll;
+  & td,
+  th {
+    vertical-align: middle;
+    text-align: center;
+  }
+`;
+const TableBtn = styled.div`
+  margin-top: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+  letter-spacing: 4px;
+`;

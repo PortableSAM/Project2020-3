@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import firebase from "./Config/Config";
-import "./Style/ItemCreate.css";
+import styled from "styled-components";
 
 //fireStore collection 지정(doc.id는 자동생성).
 const db = firebase.firestore();
@@ -23,11 +23,11 @@ export const ItemInput = () => {
   };
 
   return (
-    <div className="input_container">
-      <div className="input_title">
+    <InputContainer>
+      <InputTitle>
         <h4>물품등록</h4>
-      </div>
-      <form className="input_form" onSubmit={handleSubmit(onSubmit)}>
+      </InputTitle>
+      <InputForm className="input_form" onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"
           name="registor"
@@ -81,8 +81,47 @@ export const ItemInput = () => {
           placeholder="기타 특이사항 및 상세사항 기입."
           ref={register}
         />
-        <button type="submit">등록하기</button>
-      </form>
-    </div>
+        <button type="submit" className="btn btn-outline-info">
+          등록하기
+        </button>
+      </InputForm>
+    </InputContainer>
   );
 };
+
+const InputContainer = styled.div`
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const InputTitle = styled.div`
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  letter-spacing: 3px;
+  & h4 {
+    margin: 0;
+  }
+`;
+
+const InputForm = styled.form`
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  & input {
+    margin: 5px;
+    width: 150px;
+    text-align: center;
+    letter-spacing: 2px;
+    border: none;
+    border-bottom: 1px solid gray;
+    background: none;
+  }
+  & textarea {
+    margin: 5px;
+  }
+  & select {
+    text-align: center;
+  }
+`;
