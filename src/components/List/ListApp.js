@@ -3,15 +3,23 @@ import ListView from "./ListView";
 import { Modal } from "reactstrap";
 import { ItemInput } from "../Item/ItemCreate";
 import styled from "styled-components";
+import firebase from "../Config/Config";
 
-function ListApp() {
+function ListApp(props) {
   const [modal, setModal] = React.useState(false);
   const onToggle = () => setModal(!modal === true);
-
+  console.log(props);
+  const signOut = () => {
+    const fireAuth = firebase.auth();
+    fireAuth.signOut();
+  };
   return (
     <ListContainer>
       <ListTitle>
         <h2>Project 2020-3</h2>
+        <button type="submit" onClick={signOut}>
+          Sign Out
+        </button>
       </ListTitle>
       <ListTable>
         <table className="table table">
@@ -54,8 +62,12 @@ const ListContainer = styled.div`
   align-items: center;
 `;
 const ListTitle = styled.div`
-  padding-left: 85px;
-  align-self: flex-start;
+  width: 90%;
+  padding-left: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 const ListTable = styled.div`
   padding: 10px;

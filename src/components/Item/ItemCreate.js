@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import firebase from "./Config/Config";
+import firebase from "../Config/Config";
 import styled from "styled-components";
 
 //fireStore collection 지정(doc.id는 자동생성).
