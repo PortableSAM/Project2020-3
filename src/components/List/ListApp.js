@@ -5,14 +5,15 @@ import { ItemInput } from "../Item/ItemCreate";
 import styled from "styled-components";
 import firebase from "../Config/Config";
 
-function ListApp(props) {
+const fireAuth = firebase.auth();
+
+export function ListApp() {
   const [modal, setModal] = React.useState(false);
   const onToggle = () => setModal(!modal === true);
-  console.log(props);
   const signOut = () => {
-    const fireAuth = firebase.auth();
     fireAuth.signOut();
   };
+
   return (
     <ListContainer>
       <ListTitle>
@@ -52,8 +53,6 @@ function ListApp(props) {
     </ListContainer>
   );
 }
-
-export default ListApp;
 
 const ListContainer = styled.div`
   margin-top: 20px;

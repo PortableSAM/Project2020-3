@@ -1,18 +1,22 @@
 import React from "react";
-import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import ListApp from "./components/List/ListApp";
+import "./App.css";
 import { SignIn } from "./components/LogIn/SignInForm";
+import { SignUp } from "./components/LogIn/SignUpForm";
+import { ListApp } from "./components/List/ListApp";
+import { AuthProvider } from "./components/AuthControl/Auth";
+import { PrivateRoute } from "./components/RouteControl/PrivateRoute";
 
-function App() {
+export const App = () => {
   return (
-    <div>
+    <AuthProvider>
       <Router>
-        <Route exact path="/" component={SignIn} />
-        <Route path="/list" component={ListApp} />
+        <PrivateRoute exact path="/" component={ListApp} />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
       </Router>
-    </div>
+    </AuthProvider>
   );
-}
+};
 
 export default App;

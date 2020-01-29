@@ -1,40 +1,38 @@
-import React from "react";
+import React, { useCallback, useContext } from "react";
+import { withRouter, Redirect } from "react-router-dom";
 import styled from "styled-components";
-import firebase from "../Config/Config";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../AuthControl/Auth";
+import { fireAuth } from "../AuthControl/Auth";
 
-const fireAuth = firebase.auth();
-
-export const SignIn = () => {
+export const SignIn = ({ history }) => {
   const { register, handleSubmit, errors } = useForm();
-  const handleAuth = data => {
-    const email = data.email;
-    const password = data.password;
-
-    fireAuth.signInWithEmailAndPassword(email, password).catch(error => {
-      const errCode = error.code;
-      const errMessage = error.message;
-      alert(
-        `E-mail, password check!\n Error Code: ${errCode}\n Error Message: ${errMessage}`
-      );
-      console.error("E-mail, password check!", error);
-    });
-    fireAuth.onAuthStateChanged(user => {
-      if (user) {
-        const uid = user.uid;
-        window.location.href = `/list/${uid}`;
-      } else {
-        return;
+  const handleSignIn = useCallback(
+    async data => {
+      const email = data.email;
+      const password = data.password;
+      try {
+        await fireAuth.signInWithEmailAndPassword(email, password);
+        history.push("/");
+      } catch (error) {
+        alert(error.message);
       }
-    });
-  };
+    },
+    [history]
+  );
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <Styles>
       <header>
-        <h3>Page Title</h3>
+        <h3>Item Data List</h3>
       </header>
       <main>
-        <form onSubmit={handleSubmit(handleAuth)}>
+        <form onSubmit={handleSubmit(handleSignIn)}>
           <input
             type="text"
             name="email"
@@ -56,6 +54,8 @@ export const SignIn = () => {
     </Styles>
   );
 };
+
+export default withRouter(SignIn);
 
 const Styles = styled.div`
   margin: 0;
