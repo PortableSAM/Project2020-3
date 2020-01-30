@@ -13,12 +13,13 @@ export const ItemInput = () => {
   //React Hook Form 사용.
   const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
     const newItem = { data, createAt: createAt };
-    try {
-      dbRef.set(newItem);
-    } catch (error) {
-      console.error("Failed", error);
+    if (newItem) {
+      await dbRef.set(newItem);
+    } else {
+      console.error("Fail");
+      alert("Save Fail");
     }
   };
 

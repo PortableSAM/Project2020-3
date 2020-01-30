@@ -1,5 +1,5 @@
 import React, { useCallback, useContext } from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter, Redirect, Link } from "react-router-dom";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../AuthControl/Auth";
@@ -48,7 +48,9 @@ export const SignIn = ({ history }) => {
           />
           {errors.password && "Password is not correct"}
           <button type="submit">Sign In</button>
-          <button type="button">Sign Up</button>
+          <Link to="/signup">
+            <button type="button">Sign Up</button>
+          </Link>
         </form>
       </main>
     </Styles>
@@ -96,7 +98,7 @@ const Styles = styled.div`
         border-bottom: 1px solid gray;
         border-radius: 5px;
         background: none;
-        :hover {
+        :focus {
           background: #007bff40;
           border-bottom: 2px solid #dfe6e9;
         }
