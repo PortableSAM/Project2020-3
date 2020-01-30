@@ -20,12 +20,11 @@ export const InfoUpdate = ({ item }) => {
         unit: unit,
         updateAt: firebase.firestore.FieldValue.serverTimestamp()
       });
-      alert("Edited");
     } catch (error) {
       console.error("Edited Err", error);
     }
   };
-
+  //console.log(item);
   return (
     <ListTablebody>
       <tr key={item.id}>

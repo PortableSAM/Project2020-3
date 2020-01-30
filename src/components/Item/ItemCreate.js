@@ -14,7 +14,18 @@ export const ItemInput = () => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = async data => {
-    const newItem = { data, createAt: createAt };
+    const newItem = {
+      createAt: createAt,
+      date: data.date,
+      etc: data.etc,
+      itemNm: data.itemNm,
+      registor: data.registor,
+      lot: data.lot,
+      unit: data.unit,
+      type: data.type,
+      price: data.price,
+      quantity: data.quantity
+    };
     if (newItem) {
       await dbRef.set(newItem);
     } else {
