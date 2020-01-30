@@ -80,6 +80,23 @@ const ListTitle = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  & button {
+    margin-left: 10px;
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1px solid #20c997;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    :hover {
+      background: #dc3545;
+      border: 2px solid #79ffd7;
+      color: #f8f9fa;
+      transition: 0.5s;
+    }
+  }
   & span {
     width: 80%;
     display: flex;
