@@ -32,7 +32,7 @@ export const SignIn = ({ history }) => {
   return (
     <Styles>
       <header>
-        <h3>Item Data List</h3>
+        <h3>Project 2020-3</h3>
       </header>
       <main>
         <form onSubmit={handleSubmit(handleSignIn)}>
@@ -75,6 +75,8 @@ const Styles = styled.div`
     padding: 5px;
     width: 300px;
     text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
   }
   & main {
     margin: 0;
@@ -92,6 +94,7 @@ const Styles = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      border-radius: 10px;
       background: #81ecec;
       & input {
         margin-top: 10px;
