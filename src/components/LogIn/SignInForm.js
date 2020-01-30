@@ -7,6 +7,8 @@ import { fireAuth } from "../AuthControl/Auth";
 
 export const SignIn = ({ history }) => {
   const { register, handleSubmit, errors } = useForm();
+
+  //useCallback사용해서 Sign In Data 전송
   const handleSignIn = useCallback(
     async data => {
       const email = data.email;
@@ -23,6 +25,7 @@ export const SignIn = ({ history }) => {
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
+    //currentUser 정보가 있으면 메인페이지로 이동
     return <Redirect to="/" />;
   }
 

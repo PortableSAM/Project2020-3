@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ListView from "./ListView";
 import { Modal } from "reactstrap";
 import { ItemInput } from "../Item/ItemCreate";
 import styled from "styled-components";
-import firebase from "../Config/Config";
-
-const fireAuth = firebase.auth();
+import { fireAuth } from "../AuthControl/Auth";
 
 export function ListApp() {
   const [modal, setModal] = React.useState(false);
+  const [email, setEmail] = React.useState(null);
+  const [lastST, setLastST] = React.useState(null);
   const onToggle = () => setModal(!modal === true);
+  useEffect(() => {
+    const user = fireAuth.currentUser;
+    if (user != null) {
+      const email = user.email;
+      const lastST = user.metadata.lastSignInTime;
+      setEmail(email);
+      setLastST(lastST);
+    }
+  }, []);
   const signOut = () => {
     fireAuth.signOut();
   };
@@ -18,6 +27,10 @@ export function ListApp() {
     <ListContainer>
       <ListTitle>
         <h2>Project 2020-3</h2>
+        <span>
+          <p>{`${email}`}</p>
+          <p> {`${new Date(lastST).toLocaleString("ko")}`}</p>
+        </span>
         <button type="submit" onClick={signOut}>
           Sign Out
         </button>
@@ -67,6 +80,19 @@ const ListTitle = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  & span {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    & p {
+      margin: 0;
+      margin-left: 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: rgba(108, 92, 231, 1);
+    }
+  }
 `;
 const ListTable = styled.div`
   padding: 10px;

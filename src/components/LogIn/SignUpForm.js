@@ -8,6 +8,7 @@ import { Redirect, Link } from "react-router-dom";
 export const SignUp = ({ history }) => {
   const { register, handleSubmit, errors } = useForm();
 
+  //useCallback사용해서 계정생성정보 전달
   const handelAuth = useCallback(
     async data => {
       console.log(data);
@@ -19,6 +20,8 @@ export const SignUp = ({ history }) => {
           .createUserWithEmailAndPassword(email, password)
           .then(user => {
             const userInfo = user;
+            //계정생성정보 firebase Auth에 전달함과 동시
+            //firestore collection지정해서 저장
             const db = firebase.firestore();
             const dbRef = db.collection("User").doc(userInfo.user.uid);
             dbRef.set({
@@ -43,6 +46,7 @@ export const SignUp = ({ history }) => {
   );
   const { currentUser } = React.useContext(AuthContext);
   if (currentUser) {
+    //currentUser 정보가 있으면 메인페이지로 이동
     return <Redirect to="/" />;
   }
   return (
