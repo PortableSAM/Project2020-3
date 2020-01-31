@@ -98,7 +98,7 @@ const ListTitle = styled.div`
     }
   }
   & span {
-    width: 80%;
+    width: 75%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
