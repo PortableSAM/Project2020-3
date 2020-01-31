@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import firebase from "../Config/Config";
 import styled from "styled-components";
+import { fireAuth } from "../AuthControl/Auth";
 
 //fireStore collection 지정(doc.id는 자동생성).
 const db = firebase.firestore();
@@ -12,6 +13,25 @@ const createAt = firebase.firestore.Timestamp.fromDate(new Date());
 export const ItemInput = () => {
   //React Hook Form 사용.
   const { register, handleSubmit, errors } = useForm();
+  const [userInfo, setUserInfo] = useState();
+
+  useEffect(() => {
+    const user = fireAuth.currentUser;
+    if (user != null) {
+      const uid = user.uid;
+      db.collection("User")
+        .doc(uid)
+        .get()
+        .then(doc => {
+          if (doc.exists) {
+            const user = {
+              ...doc.data()
+            };
+            setUserInfo(user.User_Name);
+          }
+        });
+    }
+  }, []);
 
   const onSubmit = async data => {
     const newItem = {
@@ -43,7 +63,7 @@ export const ItemInput = () => {
         <input
           type="text"
           name="registor"
-          placeholder="작성자"
+          defaultValue={userInfo}
           ref={register({ required: true })}
         />
         {errors.registor && `작성자 입력요망`}

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ListView from "./ListView";
 import { Modal } from "reactstrap";
+import { Link } from "react-router-dom";
 import { ItemInput } from "../Item/ItemCreate";
 import styled from "styled-components";
 import { fireAuth } from "../AuthControl/Auth";
@@ -28,7 +29,9 @@ export function ListApp() {
       <ListTitle>
         <h2>Project 2020-3</h2>
         <span>
-          <p>{`${email}`}</p>
+          <Link to="/userinfo">
+            <p>{`${email}`}</p>
+          </Link>
           <p> {`${new Date(lastST).toLocaleString("ko")}`}</p>
         </span>
         <button type="submit" onClick={signOut}>
@@ -102,12 +105,19 @@ const ListTitle = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    & a {
+      text-decoration: none;
+    }
     & p {
       margin: 0;
       margin-left: 20px;
       font-size: 1rem;
       font-weight: bold;
       color: rgba(108, 92, 231, 1);
+      :hover {
+        color: rgba(108, 92, 230, 0.8);
+        transition: 0.7s;
+      }
     }
   }
 `;

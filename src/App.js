@@ -6,12 +6,14 @@ import { SignUp } from "./components/LogIn/SignUpForm";
 import { ListApp } from "./components/List/ListApp";
 import { AuthProvider } from "./components/AuthControl/Auth";
 import { PrivateRoute } from "./components/RouteControl/PrivateRoute";
+import { UserInfo } from "./components/UserInfo/UserInfo";
 
 export const App = () => {
   return (
     <AuthProvider>
       <Router>
         <PrivateRoute exact path="/" component={ListApp} />
+        <Route path="/userinfo" component={UserInfo} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
       </Router>
