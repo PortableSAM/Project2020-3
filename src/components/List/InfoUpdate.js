@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { LVRemove } from "./ListViewRemove";
 import firebase from "../Config/Config";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const db = firebase.firestore();
 const dbRef = db.collection("Item");
@@ -38,7 +39,18 @@ export const InfoUpdate = ({ item }) => {
             onChange={e => setDate(e.target.value)}
           />
         </td>
-        <td>{item.itemNm}</td>
+        <td>
+          <Link
+            to={{
+              pathname: `/history/${item.id}`,
+              state: {
+                docId: item
+              }
+            }}
+          >
+            {item.itemNm}
+          </Link>
+        </td>
         <td>{item.lot}</td>
         <td>
           {item.quantity}{" "}
@@ -82,6 +94,10 @@ const InputUnit = styled.input`
   text-align: center;
 `;
 const ListTablebody = styled.tbody`
+  & a {
+    color: black;
+    text-decoration: none;
+  }
   & input {
     border: none;
     border-bottom: 1px solid lightpink;
