@@ -24,17 +24,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export const DocContext = createContext();
-
-export const DocProvider = ({ children }) => {
-  const [doc, setDoc] = useState(null);
-
-  useEffect(() => {
-    const db = firebase.firestore();
-    const dbRef = db.collection("Item").doc();
-    dbRef.onSnapshot(setDoc);
-  }, []);
-
-  return <DocContext.Provider value={{ doc }}>{children}</DocContext.Provider>;
-};
