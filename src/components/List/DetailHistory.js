@@ -72,29 +72,29 @@ export const DetailHistory = props => {
                   <input
                     type="date"
                     name="hisdate"
-                    ref={register({ require: true })}
+                    ref={register({ required: true })}
                   />
-                  {errors.hisdate && "날짜 작성 바랍니다."}
+                  {errors.hisdate && alert("날짜 작성 바랍니다.")}
                 </th>
                 <td>
-                  <input name="user" ref={register({ require: true })} />
-                  {errors.user && "사용자 작성 바랍니다."}
+                  <input name="user" ref={register({ required: true })} />
+                  {errors.user && alert("사용자 작성 바랍니다.")}
                 </td>
                 <td>
                   <input
                     type="number"
                     name="quantity"
-                    ref={register({ require: true })}
+                    ref={register({ required: true })}
                   />
-                  {errors.quantity && "수량 작성 바랍니다."}
+                  {errors.quantity && alert("수량 작성 바랍니다.")}
                 </td>
                 <td>
                   <input
                     type="textarea"
                     name="loghis"
-                    ref={register({ require: true })}
+                    ref={register({ required: true })}
                   />
-                  {errors.loghis && "이력 작성 바랍니다."}
+                  {errors.loghis && alert("이력 작성 바랍니다.")}
                 </td>
                 <td>
                   <button type="submit">Registration</button>

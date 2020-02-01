@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import firebase from "../Config/Config";
 import styled from "styled-components";
 
-const db = firebase.firestore();
-
 export const HistoryView = ({ docData }) => {
   const [his, setHis] = useState([]);
+  const db = firebase.firestore();
   const dbRef = db
     .collection("Item")
     .doc(docData.id)
@@ -13,18 +12,17 @@ export const HistoryView = ({ docData }) => {
 
   //Collection docData.itemNm 문서 수신
   useEffect(() => {
-    const fetchData = () => {
-      //기본정렬 방식 설정
-      dbRef.orderBy("createAt", "desc").onSnapshot(snapshot => {
-        const log = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }));
-        // Collection docData.itemNm doc Data를 his에 반영
-        setHis(log);
-      });
-    };
-    return fetchData();
+    //기본정렬 방식 설정
+    const Log = dbRef.orderBy("createAt", "desc").onSnapshot(snapshot => {
+      const log = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      // Collection docData.itemNm doc Data를 his에 반영
+      setHis(log);
+    });
+
+    return Log;
   }, [dbRef]);
 
   return (
