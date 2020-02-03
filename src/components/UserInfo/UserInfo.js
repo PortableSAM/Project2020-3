@@ -35,12 +35,17 @@ export const UserInfo = ({ history }) => {
     e.preventDefault();
     const user = fireAuth.currentUser;
     if (user != null) {
-      dbRef.doc(uid).update({
-        UserDep: userDep,
-        UserRank: userRank,
-        updateAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
-      history.push("/");
+      try {
+        dbRef.doc(uid).update({
+          UserDep: userDep,
+          UserRank: userRank,
+          updateAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        history.push("/");
+      } catch (error) {
+        console.error("No Update", error);
+        alert("No Update");
+      }
     }
   };
   const userDel = () => {
@@ -100,17 +105,45 @@ export const UserInfo = ({ history }) => {
 
 const Styles = styled.div`
   margin: 0;
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  & header {
+    margin: 0;
+    padding: 0;
+    width: 400px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & h5 {
+      margin: 0;
+      height: 30px;
+      border-bottom: 1px dotted gray;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  }
+  & main {
+    padding: 15px;
+    width: 400px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+    background: #81ecec;
+    box-shadow: 3px 6px 6px rgba(0, 184, 148, 1);
+  }
   & section {
+    height: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     & label {
       width: 300px;
       display: flex;
@@ -119,6 +152,7 @@ const Styles = styled.div`
       & input {
         border: none;
         text-align: center;
+        background: none;
         :focus {
           outline: none;
           border-bottom: 1px solid black;
@@ -129,5 +163,10 @@ const Styles = styled.div`
   & footer {
     display: flex;
     justify-content: space-between;
+    & button {
+      width: 100px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
   }
 `;
