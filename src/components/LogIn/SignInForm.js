@@ -64,8 +64,8 @@ export default withRouter(SignIn);
 
 const Styles = styled.div`
   margin: 0;
+  margin-top: 100px;
   padding: 0;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

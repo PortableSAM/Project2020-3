@@ -151,7 +151,9 @@ const Styles = styled.div`
       padding-left: 5px;
       width: 150px;
       text-align: center;
-      border-bottom: 1px solid rgba(99, 110, 114, 1);
+      text-shadow: 2px 3px 3px rgba(255, 255, 255, 2),
+        3px 4px 4px rgba(45, 52, 54, 1.5);
+      border-bottom: 1px solid rgba(99, 110, 114, 3);
     }
   }
   & main {
