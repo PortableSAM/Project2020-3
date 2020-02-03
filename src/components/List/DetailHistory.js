@@ -27,6 +27,10 @@ export const DetailHistory = props => {
     });
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <Styles>
       <header>
@@ -105,6 +109,9 @@ export const DetailHistory = props => {
           </table>
         </form>
         <footer>
+          <button className="btn btn-outline-info" onClick={handlePrint}>
+            Print
+          </button>
           <Link to="/">
             <button className="btn btn-outline-secondary">List</button>
           </Link>
@@ -120,6 +127,27 @@ const Styles = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  & header {
+    margin-top: 30px;
+    width: 903.967px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & h5 {
+      margin: 0;
+      margin-bottom: 10px;
+      padding: 0;
+      width: 200px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 2px dotted gray;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+  }
   & section {
     width: 865px;
     display: flex;
@@ -138,11 +166,11 @@ const Styles = styled.div`
   & main {
     margin: 0;
     padding: 10px;
-    border: 1px solid black;
+    border: 0.5px solid black;
     & footer {
       margin-top: 10px;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       & button {
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -153,7 +181,7 @@ const Styles = styled.div`
     text-align: center;
   }
   & form {
-    height: 600px;
+    height: 650px;
     overflow-y: scroll;
   }
   & tbody {

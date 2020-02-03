@@ -24,6 +24,7 @@ function ListView() {
         setItemInfo(info);
         console.log(info);
       });
+
     return fetchData;
   }, []);
 
