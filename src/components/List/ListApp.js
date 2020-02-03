@@ -34,7 +34,11 @@ export function ListApp() {
           </Link>
           <p> {`${new Date(lastST).toLocaleString("ko")}`}</p>
         </span>
-        <button type="submit" onClick={signOut}>
+        <button
+          type="submit"
+          className="btn btn-outline-primary"
+          onClick={signOut}
+        >
           Sign Out
         </button>
       </ListTitle>
@@ -83,22 +87,18 @@ const ListTitle = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  & button {
-    margin-left: 10px;
-    width: 120px;
-    height: 30px;
-    border-radius: 5px;
-    background: #fff;
-    border: 1px solid #20c997;
+  & h2 {
+    font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: 600;
-    :hover {
-      background: #dc3545;
-      border: 2px solid #79ffd7;
-      color: #f8f9fa;
-      transition: 0.5s;
-    }
+    text-shadow: 2px 3px 3px rgba(255, 255, 255, 1),
+      3px 4px 4px rgba(45, 52, 54, 1.5);
+  }
+  & button {
+    margin-left: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
   }
   & span {
     width: 75%;

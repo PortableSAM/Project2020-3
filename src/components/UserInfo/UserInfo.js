@@ -125,6 +125,8 @@ const Styles = styled.div`
       border-bottom: 1px dotted gray;
       text-transform: uppercase;
       letter-spacing: 2px;
+      text-shadow: 2px 3px 3px rgba(255, 255, 255, 2),
+        3px 4px 4px rgba(45, 52, 54, 3);
     }
   }
   & main {
