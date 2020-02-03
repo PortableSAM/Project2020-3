@@ -77,17 +77,23 @@ const Styles = styled.div`
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
+    & h3 {
+      margin: 0;
+      letter-spacing: 3px;
+      text-shadow: 2px 3px 3px rgba(255, 255, 255, 1),
+        3px 4px 4px rgba(45, 52, 54, 1.5);
+    }
   }
   & main {
     margin: 0;
-    margin-bottom: 200px;
     padding: 0;
     width: 300px;
     height: 400px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     & form {
+      margin-top: 20px;
       width: 280px;
       height: 320px;
       display: flex;
@@ -96,6 +102,8 @@ const Styles = styled.div`
       align-items: center;
       border-radius: 10px;
       background: #81ecec;
+      box-shadow: 3px 6px 6px rgba(0, 184, 148, 1),
+        4px 7px 7px rgba(178, 190, 195, 1);
       & input {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -105,6 +113,7 @@ const Styles = styled.div`
         border-radius: 5px;
         background: none;
         :focus {
+          outline: none;
           background: #007bff40;
           border-bottom: 2px solid #dfe6e9;
         }
@@ -121,8 +130,9 @@ const Styles = styled.div`
         border: 2px solid #20c997;
         color: #c4f4cf;
         :hover {
-          background: #c4f4cf;
-          color: #28a745;
+          border: 1px solid rgba(217, 128, 250, 1);
+          background: rgba(95, 39, 205, 1);
+          color: rgba(200, 214, 229, 1);
         }
       }
     }
